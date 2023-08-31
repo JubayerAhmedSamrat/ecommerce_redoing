@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
 
       debugShowCheckedModeBanner: false,
-        home:  MyHomePage(headerText: "homehead", footerText: "homefoot",)
+        home:  MyHomePage()
 
     );
   }

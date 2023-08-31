@@ -1,43 +1,72 @@
 import 'package:flutter/material.dart';
 
 class ProductBox extends StatefulWidget {
-  final String title;
-  final String description;
-  final Widget photo;
+  String headerText;
+  String footerText;
+  String photoPath;
 
-  const ProductBox({super.key, required this.title,
-                    required this.description, required this.photo });
+  ProductBox({super.key, required this.headerText,
+                    required this.footerText, required this.photoPath });
 
   @override
-  State<ProductBox> createState() => _ProductBoxState();
+  State<ProductBox> createState() => _ProductBoxState(headerText, footerText, photoPath);
 }
 
 class _ProductBoxState extends State<ProductBox> {
-  var title;
+
+
+  _ProductBoxState(this.headerText, this.footerText, this.photoPath);
+
+  String headerText;
+  String footerText;
+  String photoPath;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: 150,
-            height: 150,
-            child:Column(
-              children: [
-                // title
-                Container(
-                child: Text('$title'),
-            ),
-                // picture
-                Container(),
-                // description
-                Container(),
-              ],
-            )
-          )
-        ],
-      )
+        body: Container(
+
+          height: 400,
+          width: 400,
+          color: Colors.red,
+          child: Column(
+            children: [
+              Expanded(
+                  flex:1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.brown,
+                    ),
+
+                    child: Center(child: Text(headerText,
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),)),
+
+                  )
+              ),
+              Expanded(flex: 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        image: new DecorationImage(
+                          image: new AssetImage(photoPath),
+                          fit: BoxFit.fill,)
+                    ),
+                  )
+              ),
+              Expanded(flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
+
+                    ),
+                    child: Center(child: Text(footerText,
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),)),
+                  )),
+
+            ],
+
+          ),
+        )
     );
   }
 }
